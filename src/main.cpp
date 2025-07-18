@@ -1,16 +1,12 @@
 #include "main.hpp"
 #include "ModConfig.hpp"
+#include "logging.hpp"
 #include "GlobalNamespace/LightManager.hpp"
 #include "GlobalNamespace/VRController.hpp"
 #include "GlobalNamespace/Saber.hpp"
-#include "GlobalNamespace/SaberManager.hpp"
 #include "GlobalNamespace/OVRInput.hpp"
 #include "GlobalNamespace/AudioTimeSyncController.hpp"
 
-#include "beatsaber-hook/shared/utils/typedefs.h"
-#include "beatsaber-hook/shared/utils/il2cpp-utils.hpp"
-#include "beatsaber-hook/shared/utils/logging.hpp"
-#include "beatsaber-hook/shared/utils/utils.h"
 #include "beatsaber-hook/shared/utils/hooking.hpp"
 #include "beatsaber-hook/shared/utils/il2cpp-type-check.hpp"
 

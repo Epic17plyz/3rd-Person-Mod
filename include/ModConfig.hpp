@@ -1,8 +1,7 @@
 #pragma once
 #include "config-utils/shared/config-utils.hpp"
 
-DECLARE_CONFIG(ModConfig,
-
+DECLARE_CONFIG(ModConfig) {
     CONFIG_VALUE(Active, bool, "Active", true);
     CONFIG_VALUE(Fixed, bool, "Fixed camera position", false);
     CONFIG_VALUE(LeftSaber, bool, "camera to saber", false);
@@ -21,4 +20,4 @@ DECLARE_CONFIG(ModConfig,
     CONFIG_VALUE(ZRot, float, "Z Rot", 0);
     CONFIG_VALUE(MoveMultiplier, float, "Change movement multipler", 5.0f);
     CONFIG_VALUE(MoveController, int, "Controls for moving the camera", 0);
-)
+};

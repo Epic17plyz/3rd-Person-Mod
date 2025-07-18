@@ -1,11 +1,12 @@
 {
+  "$schema": "https://raw.githubusercontent.com/QuestPackageManager/QPM.Package/refs/heads/main/qpm.schema.json",
   "version": "0.1.0",
   "sharedDir": "shared",
   "dependenciesDir": "extern",
   "info": {
     "name": "Third Person Mod",
     "id": "Play3rdPer",
-    "version": "0.13.0",
+    "version": "0.14.0",
     "url": null,
     "additionalData": {
       "overrideSoName": "libPlay3rdPer.so",
@@ -40,6 +41,7 @@
         "pwsh ./scripts/pull-tombstone.ps1"
       ]
     },
+    "ndk": "^27.2.12479018",
     "qmodIncludeDirs": [
       "./build",
       "./extern/libs"
@@ -50,39 +52,39 @@
   "dependencies": [
     {
       "id": "bs-cordl",
-      "versionRange": "3500.*",
+      "versionRange": "^4007.0.0",
       "additionalData": {}
     },
     {
       "id": "beatsaber-hook",
-      "versionRange": "^5.1.6",
+      "versionRange": "^6.4.2",
       "additionalData": {}
     },
     {
       "id": "scotland2",
-      "versionRange": "^0.1.4",
+      "versionRange": "^0.1.6",
       "additionalData": {
         "includeQmod": false
       }
     },
     {
       "id": "custom-types",
-      "versionRange": "^0.17.7",
+      "versionRange": "^0.18.3",
       "additionalData": {}
     },
     {
       "id": "bsml",
-      "versionRange": "^0.4.25",
+      "versionRange": "^0.4.54",
       "additionalData": {}
     },
     {
       "id": "config-utils",
-      "versionRange": "^1.4.2",
+      "versionRange": "^2.0.3",
       "additionalData": {}
     },
     {
-      "id": "paper",
-      "versionRange": "^3.6.3",
+      "id": "paper2_scotland2",
+      "versionRange": "^4.6.4",
       "additionalData": {}
     }
   ]
