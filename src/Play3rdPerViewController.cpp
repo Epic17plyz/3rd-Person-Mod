@@ -45,7 +45,7 @@ void DidActivate(ViewController* self, bool firstActivation, bool addedToHierarc
         AddHoverHint(AddConfigValueToggle(container->get_transform(), getModConfig().ApplyOffsets)->get_gameObject(), "Wether to also add the offsets from below if the camera is attached to a saber");
 
         // OnlyPos
-        AddHoverHint(AddConfigValueToggle(container->get_transform(), getModConfig().OnlyPos)->get_gameObject(), "only the position gets applied to the camera and NOT the Rotation");
+        AddHoverHint(AddConfigValueToggle(container->get_transform(), getModConfig().OnlyPos)->get_gameObject(), "Only the position gets applied to the camera and NOT the Rotation");
 
         // MoveWhilePlaying
         AddHoverHint(AddConfigValueToggle(container->get_transform(), getModConfig().MoveWhilePlaying)->get_gameObject(), "If this is activated you can move the camera while playing if you press Y");
@@ -59,15 +59,14 @@ void DidActivate(ViewController* self, bool firstActivation, bool addedToHierarc
         // WashingMachineSpeed
         AddHoverHint(AddConfigValueIncrementFloat(container->get_transform(), getModConfig().WashingMachineSpeed, 1, 0.5f, -100, 100)->get_gameObject(), "Speed at which you are rotating");
 
-        /*
-        Enable later once replay is out
-        // DisableWhileReplay
+        //Enable later once replay is out
+         /*DisableWhileReplay
         auto DisableWhileReplayPress = il2cpp_utils::MakeDelegate<UnityEngine::Events::UnityAction_1<bool>*>(
                    classof(UnityEngine::Events::UnityAction_1<bool>*), this, SetDisableWhileReplay);
         UnityEngine::UI::Toggle* DisableWhileReplayObject = CreateToggle(container->get_transform(), "Disable while viewing Replays", getConfig().config["DisableWhileReplay"].GetBool(), DisableWhileReplayPress);
         AddHoverHint(DisableWhileReplayObject->get_gameObject(), "While viewing a replay, the Replay mod has it's own camera control system! Enabling this setting will result in Third person mod being disabled while you view a replay.");
         */
-
+       
         // X
         AddHoverHint(AddConfigValueIncrementFloat(container->get_transform(), getModConfig().XOffset, 1, 0.1f, -100, 100)->get_gameObject(), "Offset on the x coordinate");
 
