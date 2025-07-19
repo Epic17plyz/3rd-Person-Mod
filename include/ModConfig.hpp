@@ -1,8 +1,9 @@
 #pragma once
+#include <string>
 #include "config-utils/shared/config-utils.hpp"
 
 DECLARE_CONFIG(ModConfig) {
-    CONFIG_VALUE(WARNING, bool, "Due to a bug, enabling Burn Marks in GraphicsTweaks will bug out the positions. (This button doesn't do anything)", true);
+    CONFIG_VALUE(WARNING, float, "WARNING", 0);
     CONFIG_VALUE(Active, bool, "Active", true);
     CONFIG_VALUE(Fixed, bool, "Fixed camera position", false);
     CONFIG_VALUE(LeftSaber, bool, "camera to saber", false);

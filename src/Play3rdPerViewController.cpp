@@ -29,6 +29,8 @@ void DidActivate(ViewController* self, bool firstActivation, bool addedToHierarc
         self->get_gameObject()->AddComponent<Touchable*>();
         GameObject* container = CreateScrollableSettingsContainer(self->get_transform());
 
+        AddHoverHint(AddConfigValueIncrementFloat(container->get_transform(), getModConfig().WARNING, 0, 0.0f, 0, 0)->get_gameObject(), "ENABLING BURN MARKS IN GRAPHICSTWEAKS BREAKS POSITIONS. PLEASE DISABLE IF 3RD PERSON IS ENABLED.");
+
         // Active
         AddConfigValueToggle(container->get_transform(), getModConfig().Active);
 
