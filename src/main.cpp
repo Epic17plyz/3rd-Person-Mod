@@ -68,11 +68,13 @@ MAKE_HOOK_MATCH(LightManager_OnWillRenderObject, &LightManager::OnCameraPreRende
     // Do stuff when this function is called 
     LightManager_OnWillRenderObject(self, camera);
     
+    if (!getModConfig().Active.GetValue()) return; // If the mod is not active, do nothing
+
     auto mainCamera = UnityEngine::Camera::get_main();
     if (!mainCamera || camera != mainCamera.unsafePtr()) return; // Only run for the main camera 
 
     frame++;
-    if(!getModConfig().Active.GetValue() || frame < 20) return;
+    if(frame < 20) return;
     frame = 20;
 
     if(shouldGetControllers) {
