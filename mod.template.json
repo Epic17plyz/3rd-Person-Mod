@@ -6,7 +6,7 @@
   "coverImage": "cover.png",
   "author": "ComputerElite",
   "packageId": "com.beatgames.beatsaber",
-  "packageVersion": "1.40.7_7060",
+  "packageVersion": "1.40.6_6407",
   "description": "Play in 3rd Person!",
   "lateModFiles": ["${binary}"],
   "libraryFiles": [],

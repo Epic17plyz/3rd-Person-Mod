@@ -6,7 +6,7 @@
   "info": {
     "name": "Third Person Mod",
     "id": "Play3rdPer",
-    "version": "0.14.0",
+    "version": "0.14.60",
     "url": null,
     "additionalData": {
       "overrideSoName": "libPlay3rdPer.so",
@@ -52,7 +52,7 @@
   "dependencies": [
     {
       "id": "bs-cordl",
-      "versionRange": "^4007.0.0",
+      "versionRange": "^4006.0.0",
       "additionalData": {}
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "id": "bsml",
-      "versionRange": "^0.4.54",
+      "versionRange": "^0.4.53",
       "additionalData": {}
     },
     {
