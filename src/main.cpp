@@ -65,29 +65,30 @@ int framesPressed = 0;
 int frame = 0;
 
 MAKE_HOOK_MATCH(LightManager_OnWillRenderObject, &LightManager::OnCameraPreRender, void, LightManager* self, UnityEngine::Camera* camera) {
-  // Do stuff when this function is called 
-  LightManager_OnWillRenderObject(self, camera); 
-  frame++;
-  if(!getModConfig().Active.GetValue() || frame < 20) return;
-  frame = 20;
+    // Do stuff when this function is called 
+    LightManager_OnWillRenderObject(self, camera);
+    
+    auto mainCamera = UnityEngine::Camera::get_main();
+    if (!mainCamera || camera != mainCamera.unsafePtr()) return; // Only run for the main camera 
 
-if(shouldGetControllers) {
-    ArrayW controllers = UnityEngine::Resources::FindObjectsOfTypeAll<VRController*>();
-    for (int i = 0; i < controllers.size(); i++) {
-        if(controllers[i]->get_node() == UnityEngine::XR::XRNode::LeftHand) {
-            leftController = controllers[i];
-        } else if(controllers[i]->get_node() == UnityEngine::XR::XRNode::RightHand){
-            rightController = controllers[i];
+    frame++;
+    if(!getModConfig().Active.GetValue() || frame < 20) return;
+    frame = 20;
+
+    if(shouldGetControllers) {
+        ArrayW controllers = UnityEngine::Resources::FindObjectsOfTypeAll<VRController*>();
+        for (int i = 0; i < controllers.size(); i++) {
+            if(controllers[i]->get_node() == UnityEngine::XR::XRNode::LeftHand) {
+                leftController = controllers[i];
+            } else if(controllers[i]->get_node() == UnityEngine::XR::XRNode::RightHand){
+                rightController = controllers[i];
+            }
         }
+        shouldGetControllers = false;
     }
-    shouldGetControllers = false;
-}
 
-  UnityEngine::Camera* c = UnityEngine::Camera::get_main();
-  if(!c) return;
-  UnityEngine::Vector3 rot = c->get_transform()->get_eulerAngles();
-  UnityEngine::Vector3 pos = c->get_transform()->get_position();
-
+  UnityEngine::Vector3 rot = mainCamera->get_transform()->get_eulerAngles();
+  UnityEngine::Vector3 pos = mainCamera->get_transform()->get_position();
 
   if(getModConfig().LeftSaber.GetValue() && getModConfig().SwapSaber.GetValue() && rightController != nullptr) {
         saberPos = rightController->get_position();
@@ -112,7 +113,7 @@ if(shouldGetControllers) {
         }
     }
     else if(getModConfig().MoveWhilePlaying.GetValue()) {
-        UnityEngine::Vector3 diffPos = getModConfig().MoveController.GetValue() == 0 ? c->get_transform()->get_position() : (getModConfig().MoveController.GetValue() == 1 ? leftController->get_position() : rightController->get_position());
+        UnityEngine::Vector3 diffPos = getModConfig().MoveController.GetValue() == 0 ? mainCamera->get_transform()->get_position() : (getModConfig().MoveController.GetValue() == 1 ? leftController->get_position() : rightController->get_position());
         GlobalNamespace::OVRInput::Update();
         if(GlobalNamespace::OVRInput::Get(GlobalNamespace::OVRInput::Button::Four, OVRInput::Controller::Touch)) {
             UnityEngine::Vector3 posDifference = UnityEngine::Vector3::op_Subtraction(diffPos, prevPos);
@@ -133,9 +134,9 @@ auto method = *reinterpret_cast<type>(il2cpp_functions::resolve_icall("UnityEngi
 
 auto vector = UnityEngine::Vector3::op_Multiply(UnityEngine::Vector3::get_forward(), -99999 / 2);
 auto matrix = UnityEngine::Matrix4x4::op_Multiply(UnityEngine::Matrix4x4::Ortho(-99999, 99999, -99999, 99999, 0.001f, 99999), TranslateMatrix(vector));
-matrix = UnityEngine::Matrix4x4::op_Multiply(matrix, c->get_worldToCameraMatrix());
+matrix = UnityEngine::Matrix4x4::op_Multiply(matrix, mainCamera->get_worldToCameraMatrix());
 
-method(c, matrix);
+method(mainCamera, matrix);
 
   if(getModConfig().Fixed.GetValue()) {
     if(getModConfig().LeftSaber.GetValue()) { 
@@ -188,8 +189,8 @@ method(c, matrix);
       rot.z += rotated;
   }
 
-  c->get_transform()->set_position(pos);
-  c->get_transform()->set_eulerAngles(rot);
+  mainCamera->get_transform()->set_position(pos);
+  mainCamera->get_transform()->set_eulerAngles(rot);
 }
 
 MAKE_HOOK_MATCH(AudioTimeSyncController_Start, &AudioTimeSyncController::Start, void, AudioTimeSyncController* self) {

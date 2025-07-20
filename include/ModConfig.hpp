@@ -3,7 +3,6 @@
 #include "config-utils/shared/config-utils.hpp"
 
 DECLARE_CONFIG(ModConfig) {
-    CONFIG_VALUE(WARNING, float, "WARNING", 0);
     CONFIG_VALUE(Active, bool, "Active", true);
     CONFIG_VALUE(Fixed, bool, "Fixed camera position", false);
     CONFIG_VALUE(LeftSaber, bool, "camera to saber", false);
