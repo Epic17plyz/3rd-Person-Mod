@@ -6,7 +6,7 @@
   "info": {
     "name": "Third Person Mod",
     "id": "Play3rdPer",
-    "version": "0.14.0",
+    "version": "0.14.8",
     "url": null,
     "additionalData": {
       "overrideSoName": "libPlay3rdPer.so",
